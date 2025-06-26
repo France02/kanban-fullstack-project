@@ -11,12 +11,8 @@ services:
     container_name: project_db_container
     # Variabili d'ambiente per configurare PostgreSQL
     environment:
-      # Imposta l'utente del database. Deve corrispondere a 'spring.datasource.username'
       POSTGRES_USER: postgres
-      # Imposta la password. Deve corrispondere a 'spring.datasource.password'
-      POSTGRES_PASSWORD: password123
-      # Crea automaticamente un database con questo nome all'avvio. 
-      # Deve corrispondere al nome del database nell'URL di Spring.
+      POSTGRES_PASSWORD: postgres  # <-- IMPOSTA QUESTA
       POSTGRES_DB: project_management_db
     # Mappa le porte. La porta 5432 del container viene esposta sulla porta 5432 del tuo computer.
     ports:
