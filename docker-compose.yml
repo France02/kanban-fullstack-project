@@ -1,0 +1,30 @@
+# Specifica la versione della sintassi di Docker Compose
+version: '3.8'
+
+# Definisce i servizi (i container) che vogliamo avviare
+services:
+  # Nome del nostro servizio di database
+  postgres-db:
+    # L'immagine Docker da usare. Prenderà l'ultima versione ufficiale di PostgreSQL.
+    image: postgres
+    # Nome che vogliamo dare al container una volta avviato
+    container_name: project_db_container
+    # Variabili d'ambiente per configurare PostgreSQL
+    environment:
+      # Imposta l'utente del database. Deve corrispondere a 'spring.datasource.username'
+      POSTGRES_USER: postgres
+      # Imposta la password. Deve corrispondere a 'spring.datasource.password'
+      POSTGRES_PASSWORD: password123
+      # Crea automaticamente un database con questo nome all'avvio. 
+      # Deve corrispondere al nome del database nell'URL di Spring.
+      POSTGRES_DB: project_management_db
+    # Mappa le porte. La porta 5432 del container viene esposta sulla porta 5432 del tuo computer.
+    ports:
+      - "5432:5432"
+    # (Opzionale ma consigliato) Garantisce che i dati del database sopravvivano anche se il container viene rimosso e ricreato.
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+# Definisce i volumi nominati
+volumes:
+  postgres-data:
