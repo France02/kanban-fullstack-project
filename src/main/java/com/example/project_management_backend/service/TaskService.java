@@ -21,7 +21,7 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Task crateTask(Task task){
+    public Task createTask(Task task){
         task.setStatus(TaskStatus.TODO);
         return taskRepository.save(task);
     }
